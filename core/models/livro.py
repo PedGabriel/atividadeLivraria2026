@@ -1,5 +1,6 @@
 from django.db import models
 
+from .autor import Autor
 from .categoria import Categoria
 from .editora import Editora
 
@@ -23,6 +24,11 @@ class Livro(models.Model):
         null=True,
         blank=True,
     )
+    autores = models.ManyToManyField(
+        Autor,
+        related_name='livros',
+        blank=True,
+        )
 
     def __str__(self):
-        return f'{self.titulo} - {self.categoria}'
+        return f'{self.titulo} - {self.categoria} - {self.quantidade}'
