@@ -1,0 +1,196 @@
+
+[
+{
+  "model": "core.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$7WWh9s6jMzry2Gbnx30H8d$wIZzPnIKrhbOpBi0Ny25dtOcRoOK+ileRqPtzv+CUQk=",
+    "last_login": "2026-04-07T11:15:45.184Z",
+    "is_superuser": true,
+    "email": "a@a.com",
+    "name": "Superusuário",
+    "is_active": true,
+    "is_staff": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$gDw2xQZgwFkYpidganQBRU$8lNQVIM3rCWmyLCdPM0a3pcSHLmLYRZfhg1/snempV0=",
+    "last_login": null,
+    "is_superuser": true,
+    "email": "marcoandre@gmail.com",
+    "name": "Marco André Lopes Mendes",
+    "is_active": true,
+    "is_staff": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.autor",
+  "pk": 1,
+  "fields": {
+    "nome": "oie",
+    "email": "oie@gmail.com"
+  }
+},
+{
+  "model": "core.autor",
+  "pk": 2,
+  "fields": {
+    "nome": "123",
+    "email": "123@gmail.com"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 2,
+  "fields": {
+    "descricao": "Romance"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 3,
+  "fields": {
+    "descricao": "Comédia"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 4,
+  "fields": {
+    "descricao": "Documentário"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 5,
+  "fields": {
+    "descricao": "Drama"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 6,
+  "fields": {
+    "descricao": "but"
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 7,
+  "fields": {
+    "descricao": "eno"
+  }
+},
+{
+  "model": "core.editora",
+  "pk": 1,
+  "fields": {
+    "site": "http://127.0.0.1:8000/api/editoras/",
+    "nome": "editoras"
+  }
+},
+{
+  "model": "core.editora",
+  "pk": 2,
+  "fields": {
+    "site": "http://127.0.0.1:8000/api/editoras/",
+    "nome": "Editora legal maneira e divertida"
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 1,
+  "fields": {
+    "titulo": "Livros tops",
+    "isbn": "http://127.0.0.1:8000/api/",
+    "quantidade": 123,
+    "preco": "123.00",
+    "categoria": 2,
+    "editora": null,
+    "capa": null,
+    "autores": []
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 2,
+  "fields": {
+    "titulo": "1984",
+    "isbn": "123",
+    "quantidade": 222,
+    "preco": "22.00",
+    "categoria": 5,
+    "editora": 1,
+    "capa": null,
+    "autores": []
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 5,
+  "fields": {
+    "titulo": "prikito",
+    "isbn": "1",
+    "quantidade": 1,
+    "preco": "0.01",
+    "categoria": 6,
+    "editora": 1,
+    "capa": 1,
+    "autores": []
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 6,
+  "fields": {
+    "titulo": "oct",
+    "isbn": null,
+    "quantidade": 0,
+    "preco": "0.00",
+    "categoria": 7,
+    "editora": null,
+    "capa": null,
+    "autores": []
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 7,
+  "fields": {
+    "titulo": "- - - -  - - - - -  - -100110101111011010 10 101 1110",
+    "isbn": "help me",
+    "quantidade": -1,
+    "preco": "-0.01",
+    "categoria": 3,
+    "editora": 2,
+    "capa": null,
+    "autores": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "core.livro",
+  "pk": 8,
+  "fields": {
+    "titulo": "yupppp",
+    "isbn": "666",
+    "quantidade": -1,
+    "preco": "-0.01",
+    "categoria": 3,
+    "editora": 2,
+    "capa": 1,
+    "autores": [
+      2
+    ]
+  }
+}
+]
