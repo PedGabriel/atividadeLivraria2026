@@ -2,7 +2,6 @@
 Django admin customization.
 """
 
-from atexit import register
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -37,6 +36,11 @@ class EditoraAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
+class ItensCompraInline(admin.StackedInline):
+    model = ItensCompra
+    extra = 1  # Quantidade de itens adicionais
+
+
 @admin.register(Compra)
 class CompraAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'status')
@@ -44,15 +48,7 @@ class CompraAdmin(admin.ModelAdmin):
     list_filter = ('usuario', 'status')
     ordering = ('usuario', 'status')
     list_per_page = 10
-
-
-@admin.register(ItensCompra)
-class ItensCompraAdmin(admin.ModelAdmin):
-    list_display = ('compra', 'livro', 'quantidade')
-    search_fields = ('compra', 'livro', 'quantidade')
-    list_filter = ('compra', 'livro', 'quantidade')
-    ordering = ('compra', 'livro', 'quantidade')
-    list_per_page = 10
+    inlines = [ItensCompraInline]
 
 
 @admin.register(Livro)
