@@ -2,11 +2,13 @@
 Django admin customization.
 """
 
+from atexit import register
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from core.models import Autor, Categoria, Editora, Livro, User
+from core.models import Autor, Categoria, Compra, Editora, ItensCompra, Livro, User
 
 
 @admin.register(Autor)
@@ -32,6 +34,24 @@ class EditoraAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'email', 'cidade')
     list_filter = ('nome', 'email', 'cidade')
     ordering = ('nome', 'email', 'cidade')
+    list_per_page = 10
+
+
+@admin.register(Compra)
+class CompraAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'status')
+    search_fields = ('usuario', 'status')
+    list_filter = ('usuario', 'status')
+    ordering = ('usuario', 'status')
+    list_per_page = 10
+
+
+@admin.register(ItensCompra)
+class ItensCompraAdmin(admin.ModelAdmin):
+    list_display = ('compra', 'livro', 'quantidade')
+    search_fields = ('compra', 'livro', 'quantidade')
+    list_filter = ('compra', 'livro', 'quantidade')
+    ordering = ('compra', 'livro', 'quantidade')
     list_per_page = 10
 
 
@@ -92,3 +112,5 @@ class UserAdmin(BaseUserAdmin):
 # admin.site.register(models.Editora)
 # admin.site.register(models.Autor)
 # admin.site.register(models.Livro)
+
+# admin.site.register(models.Compra)
