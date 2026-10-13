@@ -1,6 +1,7 @@
 from .user import UserRegistrationSerializer, UserSerializer
 from .autor import AutorSerializer
 from .livro import (
+    LivroAjustarEstoqueSerializer,
     LivroAlterarPrecoSerializer,
     LivroListSerializer,
     LivroRetrieveSerializer,
