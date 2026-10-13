@@ -25,30 +25,43 @@ class ItensCompraCreateUpdateSerializer(ModelSerializer):
 
 class CompraCreateUpdateSerializer(ModelSerializer):
     usuario = HiddenField(default=CurrentUserDefault())
+    itens = ItensCompraCreateUpdateSerializer(many=True)
 
     class Meta:
         model = Compra
-        fields = ('id', 'usuario', 'itens')
+        fields = ('usuario', 'itens')
 
     @transaction.atomic
     def create(self, validated_data):
         itens = validated_data.pop('itens')
-        compra = Compra.objects.create(**validated_data)
+        usuario = validated_data['usuario']
+
+        compra, criada = Compra.objects.get_or_create(
+            usuario=usuario, status=Compra.StatusCompra.CARRINHO, defaults=validated_data
+        )
+
         for item in itens:
-            item['preco'] = item['livro'].preco
-            ItensCompra.objects.create(compra=compra, **item)
-        compra.save()
+            item_existente = compra.itens.filter(livro=item['livro']).first()
+
+            if item_existente:
+                item_existente.quantidade += item['quantidade']
+                item_existente.preco = item['livro'].preco
+                item_existente.save()
+            else:
+                item['preco'] = item['livro'].preco
+                ItensCompra.objects.create(compra=compra, **item)
+
         return compra
 
     @transaction.atomic
     def update(self, compra, validated_data):
-        itens = validated_data.pop('itens')
+        itens = validated_data.pop('itens', [])
         if itens:
             compra.itens.all().delete()
             for item in itens:
-                item['preco'] = item['livro'].preco  # grava o preço histórico
+                item['preco'] = item['livro'].preco
                 ItensCompra.objects.create(compra=compra, **item)
-        compra.save()
+
         return super().update(compra, validated_data)
 
 
