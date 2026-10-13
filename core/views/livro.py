@@ -8,7 +8,7 @@ from core.models import Livro
 from core.serializers import (
     LivroAlterarPrecoSerializer,
     LivroListSerializer,
-    LivroRetriveSerializer,
+    LivroRetrieveSerializer,
     LivroSerializer,
 )
 
@@ -21,7 +21,7 @@ class LivroViewSet (ModelViewSet):
         if self.action == 'list':
             return LivroListSerializer
         elif self.action == 'retrieve':
-            return LivroRetriveSerializer
+            return LivroRetrieveSerializer
         return LivroSerializer
 
     @extend_schema(

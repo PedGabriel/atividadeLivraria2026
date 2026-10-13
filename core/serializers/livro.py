@@ -17,7 +17,7 @@ class LivroListSerializer (ModelSerializer):
         model = Livro
 
 
-class LivroRetriveSerializer (ModelSerializer):
+class LivroRetrieveSerializer (ModelSerializer):
     capa = ImageSerializer(required=False)
     class Meta:
         fields = '__all__'
