@@ -1,5 +1,5 @@
 from django.db.models.fields import IntegerField
-from core import serializers
+from rest_framework import serializers
 from rest_framework.serializers import (
     DecimalField,
     ModelSerializer,
