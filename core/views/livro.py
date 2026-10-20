@@ -23,10 +23,10 @@ class LivroViewSet (ModelViewSet):
     serializer_class = LivroSerializer
 
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
-    filterset_fields = ['usuario__email', 'status', 'data']
-    search_fields = ['usuario__email']
-    ordering_fields = ['usuario__email', 'status', 'data']
-    ordering = ['-data']
+    filterset_fields = ['categoria', 'editora', 'autores']
+    search_fields = ['titulo', 'isbn', 'autores__nome', 'editora__nome', 'categoria__descricao']
+    ordering_fields = ['titulo', 'preco', 'quantidade']
+    ordering = ['-id']
 
     def get_serializer_class(self):
         if self.action == 'list':

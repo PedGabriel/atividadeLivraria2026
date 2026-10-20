@@ -12,9 +12,9 @@ from .editora import EditoraSerializer
 from .categoria import CategoriaSerializer
 from .compra import (
     CompraCreateUpdateSerializer,
-    CompraListSerializer, 
+    CompraListSerializer,
     CompraSerializer,
     ItensCompraCreateUpdateSerializer,
-    ItensCompraListSerializer, 
+    ItensCompraListSerializer,
     ItensCompraSerializer,
 )

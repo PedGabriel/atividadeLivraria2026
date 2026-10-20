@@ -1,0 +1,2416 @@
+openapi: 3.0.3
+info:
+  title: <PROJETO> API
+  version: 1.0.0
+  description: API para o projeto <descreva aqui seu projeto>.
+paths:
+  /api/autores/:
+    get:
+      operationId: autores_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - autores
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAutorList'
+          description: ''
+    post:
+      operationId: autores_create
+      tags:
+      - autores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Autor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Autor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Autor'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:from rest_framework.serializers import IntegerField, ModelSerializer
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autor'
+          description: ''
+  /api/autores/{id}/:
+    get:
+      operationId: autores_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este autor.
+        required: true
+      tags:
+      - autores
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autor'
+          description: ''
+    put:
+      operationId: autores_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este autor.
+        required: true
+      tags:
+      - autores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Autor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Autor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Autor'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autor'
+          description: ''
+    patch:
+      operationId: autores_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este autor.
+        required: true
+      tags:
+      - autores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAutor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAutor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAutor'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Autor'
+          description: ''
+    delete:
+      operationId: autores_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este autor.
+        required: true
+      tags:
+      - autores
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/categorias/:
+    get:
+      operationId: categorias_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - categorias
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoriaList'
+          description: ''
+    post:
+      operationId: categorias_create
+      tags:
+      - categorias
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+  /api/categorias/{id}/:
+    get:
+      operationId: categorias_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este categoria.
+        required: true
+      tags:
+      - categorias
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    put:
+      operationId: categorias_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este categoria.
+        required: true
+      tags:
+      - categorias
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    patch:
+      operationId: categorias_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este categoria.
+        required: true
+      tags:
+      - categorias
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    delete:
+      operationId: categorias_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este categoria.
+        required: true
+      tags:
+      - categorias
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/compras/:
+    get:
+      operationId: compras_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - compras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCompraListList'
+          description: ''
+    post:
+      operationId: compras_create
+      tags:
+      - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraCreateUpdate'
+          description: ''
+  /api/compras/{id}/:
+    get:
+      operationId: compras_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este compra.
+        required: true
+      tags:
+      - compras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compra'
+          description: ''
+    put:
+      operationId: compras_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este compra.
+        required: true
+      tags:
+      - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompraCreateUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraCreateUpdate'
+          description: ''
+    patch:
+      operationId: compras_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este compra.
+        required: true
+      tags:
+      - compras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCompraCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCompraCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCompraCreateUpdate'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraCreateUpdate'
+          description: ''
+    delete:
+      operationId: compras_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este compra.
+        required: true
+      tags:
+      - compras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/compras/{id}/finalizar/:
+    post:
+      operationId: compras_finalizar_create
+      description: Finaliza a compra, atualizando o estoque dos livros.
+      summary: Finalizar compra
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este compra.
+        required: true
+      tags:
+      - compras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+        '400':
+          description: No response body
+  /api/compras/relatorio_vendas_mes/:
+    get:
+      operationId: compras_relatorio_vendas_mes_retrieve
+      description: Gera um relatório de vendas do mês atual.
+      summary: Relatório de vendas do mês
+      tags:
+      - compras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/editoras/:
+    get:
+      operationId: editoras_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - editoras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEditoraList'
+          description: ''
+    post:
+      operationId: editoras_create
+      tags:
+      - editoras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Editora'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Editora'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Editora'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Editora'
+          description: ''
+  /api/editoras/{id}/:
+    get:
+      operationId: editoras_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este editora.
+        required: true
+      tags:
+      - editoras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Editora'
+          description: ''
+    put:
+      operationId: editoras_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este editora.
+        required: true
+      tags:
+      - editoras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Editora'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Editora'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Editora'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Editora'
+          description: ''
+    patch:
+      operationId: editoras_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este editora.
+        required: true
+      tags:
+      - editoras
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEditora'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEditora'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEditora'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Editora'
+          description: ''
+    delete:
+      operationId: editoras_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este editora.
+        required: true
+      tags:
+      - editoras
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/livros/:
+    get:
+      operationId: livros_list
+      parameters:
+      - in: query
+        name: autores
+        schema:
+          type: array
+          items:
+            type: integer
+        explode: true
+        style: form
+      - in: query
+        name: categoria
+        schema:
+          type: integer
+      - in: query
+        name: editora
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Qual campo usar ao ordenar os resultados.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Um termo de busca.
+        schema:
+          type: string
+      tags:
+      - livros
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLivroListList'
+          description: ''
+    post:
+      operationId: livros_create
+      tags:
+      - livros
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Livro'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Livro'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Livro'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Livro'
+          description: ''
+  /api/livros/{id}/:
+    get:
+      operationId: livros_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivroRetrieve'
+          description: ''
+    put:
+      operationId: livros_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Livro'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Livro'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Livro'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Livro'
+          description: ''
+    patch:
+      operationId: livros_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLivro'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLivro'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLivro'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Livro'
+          description: ''
+    delete:
+      operationId: livros_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/livros/{id}/ajustar_estoque/:
+    post:
+      operationId: livros_ajustar_estoque_create
+      description: Aumenta ou diminui o estoque; impede resultado negativo.
+      summary: Ajusta o estoque de um livro
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LivroAjustarEstoque'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LivroAjustarEstoque'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LivroAjustarEstoque'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: Estoque ajustado com sucesso.
+        '400':
+          description: Erro de validação
+  /api/livros/{id}/alterar_preco/:
+    patch:
+      operationId: livros_alterar_preco_partial_update
+      description: Altera o preço de um livro específico.
+      summary: Alterar preço do livro
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este livro.
+        required: true
+      tags:
+      - livros
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLivroAlterarPreco'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLivroAlterarPreco'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLivroAlterarPreco'
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/livros/mais_vendidos/:
+    get:
+      operationId: livros_mais_vendidos_list
+      description: Retorna os livros que venderam mais de 10 unidades.
+      summary: Lista os livros mais vendidos
+      parameters:
+      - in: query
+        name: autores
+        schema:
+          type: array
+          items:
+            type: integer
+        explode: true
+        style: form
+      - in: query
+        name: categoria
+        schema:
+          type: integer
+      - in: query
+        name: editora
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Qual campo usar ao ordenar os resultados.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Um termo de busca.
+        schema:
+          type: string
+      tags:
+      - livros
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLivroMaisVendidoList'
+          description: ''
+  /api/media/documents/:
+    get:
+      operationId: media_documents_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - media
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentUploadList'
+          description: ''
+    post:
+      operationId: media_documents_create
+      tags:
+      - media
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DocumentUpload'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentUpload'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUpload'
+          description: ''
+  /api/media/images/:
+    get:
+      operationId: media_images_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - media
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedImageUploadList'
+          description: ''
+    post:
+      operationId: media_images_create
+      tags:
+      - media
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImageUpload'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImageUpload'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageUpload'
+          description: ''
+  /api/registro/:
+    post:
+      operationId: registro_create
+      description: Endpoint para registro de novos usuários.
+      tags:
+      - registro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRegistration'
+          description: ''
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/token/:
+    post:
+      operationId: token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/token/verify/:
+    post:
+      operationId: token_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+          description: ''
+  /api/usuarios/:
+    get:
+      operationId: usuarios_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Um número de página dentro do conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a serem retornados por página.
+        schema:
+          type: integer
+      tags:
+      - usuarios
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserList'
+          description: ''
+    post:
+      operationId: usuarios_create
+      tags:
+      - usuarios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/usuarios/{id}/:
+    get:
+      operationId: usuarios_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este Usuário.
+        required: true
+      tags:
+      - usuarios
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: usuarios_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este Usuário.
+        required: true
+      tags:
+      - usuarios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: usuarios_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este Usuário.
+        required: true
+      tags:
+      - usuarios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: usuarios_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Um valor inteiro único que identifica este Usuário.
+        required: true
+      tags:
+      - usuarios
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/usuarios/me/:
+    get:
+      operationId: usuarios_me_retrieve
+      description: Retorna os dados do usuário autenticado.
+      summary: Dados do usuário autenticado
+      tags:
+      - usuarios
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+        '401':
+          description: No response body
+components:
+  schemas:
+    Autor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 200
+      required:
+      - id
+      - nome
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        descricao:
+          type: string
+          maxLength: 100
+      required:
+      - descricao
+      - id
+    Compra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        usuario:
+          type: string
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        data:
+          type: string
+          format: date-time
+          readOnly: true
+        tipo_pagamento:
+          type: string
+          readOnly: true
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItensCompra'
+          readOnly: true
+      required:
+      - data
+      - id
+      - itens
+      - status
+      - tipo_pagamento
+      - total
+      - usuario
+    CompraCreateUpdate:
+      type: object
+      properties:
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItensCompraCreateUpdate'
+      required:
+      - itens
+    CompraList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        usuario:
+          type: string
+          readOnly: true
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItensCompraList'
+          readOnly: true
+      required:
+      - id
+      - itens
+      - usuario
+    DocumentUpload:
+      type: object
+      properties:
+        attachment_key:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Used to attach the document to another object. Cannot be used
+            to retrieve the document file.
+        file:
+          type: string
+          format: uri
+          writeOnly: true
+        description:
+          type: string
+          maxLength: 255
+        uploaded_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - attachment_key
+      - file
+      - uploaded_on
+    Editora:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        site:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 100
+        nome:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 100
+        cidade:
+          type: string
+          nullable: true
+          maxLength: 100
+      required:
+      - id
+      - nome
+    Image:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          maxLength: 255
+        uploaded_on:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - uploaded_on
+      - url
+    ImageUpload:
+      type: object
+      properties:
+        attachment_key:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Used to attach the image to another object. Cannot be used
+            to retrieve the image file.
+        file:
+          type: string
+          format: uri
+          writeOnly: true
+        description:
+          type: string
+          maxLength: 255
+        uploaded_on:
+          type: string
+          format: date-time
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+      required:
+      - attachment_key
+      - file
+      - uploaded_on
+      - url
+    ItensCompra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        livro:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        titulo:
+          type: string
+          readOnly: true
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,2})?$
+          readOnly: true
+      required:
+      - id
+      - livro
+      - titulo
+      - total
+    ItensCompraCreateUpdate:
+      type: object
+      properties:
+        livro:
+          type: integer
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+      required:
+      - livro
+    ItensCompraList:
+      type: object
+      properties:
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        livro:
+          type: string
+          readOnly: true
+      required:
+      - livro
+    Livro:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        capa_attachment_key:
+          type: string
+          format: uuid
+          description: Used to attach the image to another object. Cannot be used
+            to retrieve the image file.
+          writeOnly: true
+        capa:
+          allOf:
+          - $ref: '#/components/schemas/Image'
+          readOnly: true
+        titulo:
+          type: string
+          maxLength: 255
+        isbn:
+          type: string
+          nullable: true
+          maxLength: 32
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        categoria:
+          type: integer
+          nullable: true
+        editora:
+          type: integer
+          nullable: true
+        autores:
+          type: array
+          items:
+            type: integer
+      required:
+      - capa
+      - id
+      - titulo
+    LivroAjustarEstoque:
+      type: object
+      properties:
+        quantidade:
+          type: integer
+      required:
+      - quantidade
+    LivroList:
+      type: object
+      properties:
+        titulo:
+          type: string
+          maxLength: 255
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        id:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - titulo
+    LivroMaisVendido:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        titulo:
+          type: string
+          maxLength: 255
+        total_vendidos:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - titulo
+      - total_vendidos
+    LivroRetrieve:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        capa:
+          $ref: '#/components/schemas/Image'
+        titulo:
+          type: string
+          maxLength: 255
+        isbn:
+          type: string
+          nullable: true
+          maxLength: 32
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        categoria:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        editora:
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
+        autores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - autores
+      - categoria
+      - editora
+      - id
+      - titulo
+    Nested:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        titulo:
+          type: string
+          maxLength: 255
+        isbn:
+          type: string
+          nullable: true
+          maxLength: 32
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        categoria:
+          type: integer
+          nullable: true
+        editora:
+          type: integer
+          nullable: true
+        capa:
+          type: integer
+          nullable: true
+        autores:
+          type: array
+          items:
+            type: integer
+      required:
+      - id
+      - titulo
+    PaginatedAutorList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Autor'
+    PaginatedCategoriaList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Categoria'
+    PaginatedCompraListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompraList'
+    PaginatedDocumentUploadList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentUpload'
+    PaginatedEditoraList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Editora'
+    PaginatedImageUploadList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageUpload'
+    PaginatedLivroListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LivroList'
+    PaginatedLivroMaisVendidoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LivroMaisVendido'
+    PaginatedUserList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PatchedAutor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 200
+    PatchedCategoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        descricao:
+          type: string
+          maxLength: 100
+    PatchedCompraCreateUpdate:
+      type: object
+      properties:
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItensCompraCreateUpdate'
+    PatchedEditora:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        site:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 100
+        nome:
+          type: string
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 100
+        cidade:
+          type: string
+          nullable: true
+          maxLength: 100
+    PatchedLivro:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        capa_attachment_key:
+          type: string
+          format: uuid
+          description: Used to attach the image to another object. Cannot be used
+            to retrieve the image file.
+          writeOnly: true
+        capa:
+          allOf:
+          - $ref: '#/components/schemas/Image'
+          readOnly: true
+        titulo:
+          type: string
+          maxLength: 255
+        isbn:
+          type: string
+          nullable: true
+          maxLength: 32
+        quantidade:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        categoria:
+          type: integer
+          nullable: true
+        editora:
+          type: integer
+          nullable: true
+        autores:
+          type: array
+          items:
+            type: integer
+    PatchedLivroAlterarPreco:
+      type: object
+      properties:
+        preco:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          description: Email
+          maxLength: 255
+        name:
+          type: string
+          nullable: true
+          title: Nome
+          description: Nome de usuário
+          maxLength: 255
+        foto:
+          allOf:
+          - $ref: '#/components/schemas/Image'
+          readOnly: true
+        foto_attachment_key:
+          type: string
+          format: uuid
+          description: Used to attach the image to another object. Cannot be used
+            to retrieve the image file.
+          writeOnly: true
+        is_active:
+          type: boolean
+          title: Usuário está ativo
+          description: Indica que este usuário está ativo.
+        is_staff:
+          type: boolean
+          title: Usuário é da equipe
+          description: Indica que este usuário pode acessar o Admin.
+        is_superuser:
+          type: boolean
+          title: Status de superusuário
+          description: Indica que este usuário tem todas as permissões sem atribuí-las
+            explicitamente.
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+          title: Último login
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nested'
+          readOnly: true
+    TokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - email
+      - password
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    TokenVerify:
+      type: object
+      properties:
+        token:
+          type: string
+          writeOnly: true
+      required:
+      - token
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          description: Email
+          maxLength: 255
+        name:
+          type: string
+          nullable: true
+          title: Nome
+          description: Nome de usuário
+          maxLength: 255
+        foto:
+          allOf:
+          - $ref: '#/components/schemas/Image'
+          readOnly: true
+        foto_attachment_key:
+          type: string
+          format: uuid
+          description: Used to attach the image to another object. Cannot be used
+            to retrieve the image file.
+          writeOnly: true
+        is_active:
+          type: boolean
+          title: Usuário está ativo
+          description: Indica que este usuário está ativo.
+        is_staff:
+          type: boolean
+          title: Usuário é da equipe
+          description: Indica que este usuário pode acessar o Admin.
+        is_superuser:
+          type: boolean
+          title: Status de superusuário
+          description: Indica que este usuário tem todas as permissões sem atribuí-las
+            explicitamente.
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+          title: Último login
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nested'
+          readOnly: true
+      required:
+      - email
+      - foto
+      - groups
+      - id
+    UserRegistration:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          description: Email
+          maxLength: 255
+        name:
+          type: string
+          nullable: true
+          title: Nome
+          description: Nome de usuário
+          maxLength: 255
+        password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - email
+      - id
+      - password
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

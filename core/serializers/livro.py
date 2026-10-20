@@ -2,6 +2,7 @@ from django.db.models.fields import IntegerField
 from rest_framework import serializers
 from rest_framework.serializers import (
     DecimalField,
+    IntegerField,
     ModelSerializer,
     Serializer,
     SlugRelatedField,
@@ -52,11 +53,11 @@ class LivroAlterarPrecoSerializer(Serializer):
 
 
 class LivroMaisVendidoSerializer(ModelSerializer):
-    total_vendidos = IntegerField()
+    total_vendidos = IntegerField(read_only=True)
 
     class Meta:
         model = Livro
-        fields = ('id', 'titulo', 'total_vendidos')
+        fields = ('id', 'titulo', 'total_vendidos')   # ajuste à sua lista atual
 
 
 class LivroAjustarEstoqueSerializer(Serializer):

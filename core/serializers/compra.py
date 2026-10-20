@@ -1,8 +1,12 @@
+from decimal import Decimal
+
 from django.db import transaction
+from drf_spectacular.utils import extend_schema_field
 from rest_framework.serializers import (
     CharField,
     CurrentUserDefault,
     DateTimeField,
+    DecimalField,
     HiddenField,
     ModelSerializer,
     SerializerMethodField,
@@ -84,28 +88,27 @@ class CompraListSerializer(ModelSerializer):
 
 
 class ItensCompraSerializer(ModelSerializer):
-
-    total = SerializerMethodField()
-
-    def get_total(self, instance):
-        return instance.quantidade * instance.preco
-
     titulo = CharField(source='livro.titulo', read_only=True)
-    preco = CharField(source='livro.preco', read_only=True)
+    total = SerializerMethodField()
 
     class Meta:
         model = ItensCompra
-        fields = ('livro', 'quantidade', 'preco', 'total')
+        fields = ('id', 'livro', 'titulo', 'quantidade', 'preco', 'total')
         depth = 1
+
+    @extend_schema_field(DecimalField(max_digits=9, decimal_places=2))
+    def get_total(self, obj) -> Decimal:
+        return obj.preco * obj.quantidade
 
 
 class CompraSerializer(ModelSerializer):
     usuario = CharField(source='usuario.email', read_only=True)
     status = CharField(source='get_status_display', read_only=True)
     data = DateTimeField(read_only=True)
-    tipo_pagamento = CharField(source='get_tipo_pagamento_display', read_only=True) # novo campo
+    tipo_pagamento = CharField(source='get_tipo_pagamento_display', read_only=True)
     itens = ItensCompraSerializer(many=True, read_only=True)
+    total = DecimalField(max_digits=10, decimal_places=2, read_only=True)
 
     class Meta:
         model = Compra
-        fields = ('id', 'usuario', 'status', 'total', 'data', 'tipo_pagamento', 'itens') # modificado
+        fields = ('id', 'usuario', 'status', 'total', 'data', 'tipo_pagamento', 'itens')

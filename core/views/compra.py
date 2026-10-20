@@ -12,7 +12,7 @@ from core.serializers import CompraCreateUpdateSerializer, CompraListSerializer,
 
 class CompraViewSet(ModelViewSet):
     queryset = Compra.objects.all()
-    serializer_class = CompraSerializer
+    filterset_fields = ['usuario__email', 'status', 'data']
 
     def get_queryset(self):
         usuario = self.request.user
@@ -23,10 +23,10 @@ class CompraViewSet(ModelViewSet):
         return Compra.objects.filter(usuario=usuario).order_by('-id')
 
     def get_serializer_class(self):
+        if self.action in ('create', 'update', 'partial_update'):
+            return CompraCreateUpdateSerializer
         if self.action == 'list':
             return CompraListSerializer
-        if self.action in ('create', 'update', 'partial_update'):  # ruff: ignore[literal-membership]
-            return CompraCreateUpdateSerializer
         return CompraSerializer
 
     @extend_schema(
